@@ -1,0 +1,5 @@
+# Pyre type checker
+.eslintrc.js
+.prettierrc
+.vscode
+node_modules/

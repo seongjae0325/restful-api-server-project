@@ -69,6 +69,23 @@ const server = http.createServer((req, res) => {
         }
         // GET 포스트 보기
     } else if (req.url === '/posts' && req.method === 'POST') {
+        req.setEncoding('utf-8');
+        req.on('data', (data) => {
+            /**
+             * @typedef CreatePostBody
+             * @property {string} title
+             * @property {string} content
+             */
+
+            /** @type {CreatePostBody} */
+
+            const body = JSON.parse(data);
+            const bodyWithId = {
+                ...body,
+                id: body.title.toLowerCase().replace(/\s/g, '_'),
+            };
+            posts.push(bodyWithId);
+        });
         res.statusCode = 200;
         res.end('포스트 생성하기');
     } else {

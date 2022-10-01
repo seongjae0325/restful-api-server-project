@@ -55,7 +55,7 @@ const server = http.createServer((req, res) => {
         res.setHeader('Content-Type', 'application/json; encoding=utf-8');
         res.end(JSON.stringify(result));
         // GET 포스트들 리스트 보기
-    } else if (postIdRegexResult) {
+    } else if (postIdRegexResult && req.method === 'GET') {
         const postId = postIdRegexResult[1];
         const post = posts.find((_post) => _post.id === postId);
 

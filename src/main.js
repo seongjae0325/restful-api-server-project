@@ -56,11 +56,18 @@ const server = http.createServer((req, res) => {
         res.end(JSON.stringify(result));
         // GET 포스트들 리스트 보기
     } else if (postIdRegexResult) {
-        // GET 포스트 보기
         const postId = postIdRegexResult[1];
-        console.log(postId, 'postId');
-        res.statusCode = 200;
-        res.end('포스트 보기');
+        const post = posts.find((_post) => _post.id === postId);
+
+        if (post) {
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'application/json; encoding=utf-8');
+            res.end(JSON.stringify(post));
+        } else {
+            res.statusCode = 404;
+            res.end('포스트를 찾을 수 없습니다.');
+        }
+        // GET 포스트 보기
     } else if (req.url === '/posts' && req.method === 'POST') {
         res.statusCode = 200;
         res.end('포스트 생성하기');

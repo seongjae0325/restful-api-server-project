@@ -1,4 +1,4 @@
-//@ts-check
+// @ts-check
 
 // 프레임워크 없이 간단한 웹 서버 만들어보기
 
@@ -8,6 +8,23 @@
 // - RESTful API사용.
 
 const http = require('http');
+
+/**
+ * @typedef Post
+ * @property {string} id
+ * @property {string} title
+ * @property {string} content
+ */
+
+/** @type {Post[]} */
+
+const posts = [
+    {
+        id: 'my_first_post',
+        title: 'my first post',
+        content: 'Hello!',
+    },
+];
 
 // Posting
 // GET / posts
